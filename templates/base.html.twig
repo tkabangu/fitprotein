@@ -3,21 +3,42 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
     <body>
         <header class="header">
             <div class="header__brand">Fitprotein</div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="" title="" class="nav__item">Nutrition sportive</a></li>
-                    <li><a href="" title="" class="nav__item">Vêtements & Accessoires </a></li>
-                    <li><a href="" title="" class="nav__item"></a>Contact</li>
+            <div class="header__nav">
+                <nav class="nav">
+                    <ul class="nav__items">
+                        <li class="nav__dropdown">
+                            <span class="nav__item">Nutrition sportive</span>
+                            <ul class="nav__dropdown-items">
+                                <li><a href="" class="nav__dropdown-item">Proteines</a></li>
+                                <li><a href="" class="nav__dropdown-item">BCAA</a></li>
+                                <li><a href="" class="nav__dropdown-item">Brûleurs de graisse</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="" title="" class="nav__item">Vêtements & Accessoires </a></li>
+                        <li><a href="" title="" class="nav__item"></a>Contact</li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__user">
+                <ul class="nav__items">
+                    <li><span class="nav__item">Panier</span></li>
+                    <li><a href="#" title="" class="nav__item">Se connecter</a></li>
                 </ul>
-            </nav>
-
+            </div>
         </header>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <footer>
+
+        </footer>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>

@@ -1,7 +1,40 @@
+// Variables
+// ==================
+:root {
+    --color: #121C42;
+    --contrast: #4869EE;
+    --gap: 20px;
+    --space: 8px;
+    --border: #D5E3EC;
+    --background: #F7FAFB;
+    --background-light: #FFF;
+    --shadow: #D8E1E8;
+    --list-hover: var(--background);
+}
+
+// Tools
+// ==================
+@import "tools/reset";
+@import "tools/functions";
+@import "tools/mixins";
+@import "tools/layout";
+@import "tools/typography";
+
+
+// Generic
+// ==================
 body {
-    background-color: lightgray;
-
+    font-family: $font;
+    font-size: 16px;
+    line-height: 1.4;
+    background: whitesmoke !important;
 }
-.header{
 
-}
+
+// Modules
+// ==================
+@import "modules/header";
+
+
+// Pages
+// ==================
