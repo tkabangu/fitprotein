@@ -3,6 +3,7 @@ security:
         App\Entity\User:
             algorithm: auto
 
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
@@ -10,6 +11,7 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|scss|images|js)/
@@ -17,6 +19,15 @@ security:
         main:
             anonymous: lazy
             provider: app_user_provider
+
+        access_control:
+            # require ROLE_A
+            { path: '^/admin', roles: ROLE_ADMIN }
+            { path: '^/admin', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+            { path: ^/api/(post|comment)/\d+$, roles: ROLE_USER }
+
+         logout:
+             path:   app_logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
