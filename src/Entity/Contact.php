@@ -141,16 +141,4 @@ class Contact
 
         return $this;
     }
-
-    /**
-     * @Assert\NotBlank
-     */
-    public $task;
-
-
-    /**
-     * @Assert\NotBlank
-     * @Assert\Type("\DateTime")
-     */
-    protected $dueDate;
 }

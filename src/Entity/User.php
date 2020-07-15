@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
@@ -27,18 +27,20 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=100, unique=true)
+     * @Assert\NotBlank(message="L'email est obligatoire")
+     * @Assert\Email(message="L'email n'est pas valide")
      */
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="string", length=20)
      */
-    private $roles = [];
+    //private $roles = 'ROLE_USER';
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -48,12 +50,18 @@ class User implements UserInterface
     private $civility;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(message="Le prénom est obligatoire")
+     * @Assert\Length(max="20",
+     *     maxMessage="Le prénom ne doit pas faire plus de {{ limit }} caractères")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le nom est obligatoire")
+     * @Assert\Length(max="50",
+     *     maxMessage="Le nom ne doit pas faire plus de {{ limit }} caractères")
      */
     private $lastname;
 
@@ -118,7 +126,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -145,7 +153,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -155,20 +163,21 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoles(): array
+    /**public function getRoles(): array
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
+     * /
 
     /**
      * @see UserInterface
      */
     public function getSalt()
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        // not needed when using the "crypt" algorithm in security.yaml
     }
 
     /**
@@ -344,4 +353,5 @@ class User implements UserInterface
 
         return $this;
     }
+
 }

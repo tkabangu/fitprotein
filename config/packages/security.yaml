@@ -18,16 +18,10 @@ security:
             security: false
         main:
             anonymous: lazy
-            provider: app_user_provider
-
-        access_control:
-            # require ROLE_A
-            { path: '^/admin', roles: ROLE_ADMIN }
-            { path: '^/admin', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
-            { path: ^/api/(post|comment)/\d+$, roles: ROLE_USER }
-
-         logout:
-             path:   app_logout
+#            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -40,3 +34,4 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+

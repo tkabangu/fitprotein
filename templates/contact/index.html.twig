@@ -4,33 +4,15 @@
 
 {% block body %}
     <h1>Formulaire de contact</h1>
-    {# templates/task/new.html.twig #}
-    {{ form(form) }}
 
-{#    <form class="form">#}
-{#        <div class="form__group">#}
-{#            <label for="lastname">Nom</label>#}
-{#            <input type="text" name="lastname" id="lastname" required/>#}
-{#        </div>#}
-{#        <div class="form__group">#}
-{#            <label for="firstname">Prénom</label>#}
-{#            <input type="text" name="firstname" id="firstname" required/>#}
-{#        </div>#}
-{#        <div class="form__group">#}
-{#            <label for="email">Email</label>#}
-{#            <input type="email" name="email" id="email" required/>#}
-{#        </div>#}
-{#        <div class="form__group">#}
-{#            <label for="subject">Sujet</label>#}
-{#            <input type="text" name="subject" id="subject" required/>#}
-{#        </div>#}
-{#        <div class="form__group">#}
-{#            <label for="message">Message</label>#}
-{#            <textarea type="text" name="message" id="message" required></textarea>#}
-{#        </div>#}
-{#        <div class="form__group">#}
-{#            <button type="submit">Envoyer</button>#}
-{#        </div>#}
-{#    </form>#}
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        {{ message }}
+    {% endfor %}
+
+    {{ form(form) }}
 
 {% endblock %}
