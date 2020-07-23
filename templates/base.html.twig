@@ -37,7 +37,13 @@
             <div class="header__user">
                 <ul class="nav__items">
                     <li><span class="nav__item">Panier</span></li>
-                    <li><a href="#" title="" class="nav__item">Se connecter</a></li>
+                    <li>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>
+                        {% else%}
+                            <a href="{{ path('app_login') }}" title="Se connecter" class="nav__item">Se connecter</a>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
         </header>
