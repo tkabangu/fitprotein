@@ -37,6 +37,8 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
+        dump($contact);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $contact = $form->getData();
 
@@ -52,7 +54,7 @@ class ContactController extends AbstractController
         return $this->render(
             'contact/index.html.twig',
             [
-                'form' => $form->createView(),
+                'formContact' => $form->createView(),
             ]
         );
     }

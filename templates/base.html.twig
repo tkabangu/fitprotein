@@ -6,12 +6,15 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+
+        <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
     </head>
     <body>
         <header class="header">
             <div class="header__brand"><a href="{{ path('home') }}">Fitprotein</a></div>
             <div class="header__nav">
-                <nav class="nav">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                     <ul class="nav__items">
                         <li class="nav__dropdown">
                             <span class="nav__item">Nutrition sportive</span>
@@ -36,7 +39,7 @@
             <div class="header__user">
                 <ul class="nav__items">
                     <li><span class="nav__item">Panier</span></li>
-                    <li><a href="#" title="" class="nav__item">Se connecter</a></li>
+                    <li><a href="{{ path('app_login') }}" title="" class="nav__item">Se connecter</a></li>
                 </ul>
             </div>
         </header>
@@ -85,6 +88,12 @@
         </footer>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script
+                    src="https://code.jquery.com/jquery-3.4.1.min.js"
+                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                    crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

@@ -5,14 +5,34 @@
 {% block body %}
     <h1>Formulaire de contact</h1>
 
-    {% for message in app.flashes('success') %}
-        {{ message }}
-    {% endfor %}
 
-    {% for message in app.flashes('error') %}
-        {{ message }}
-    {% endfor %}
 
-    {{ form(form) }}
+    {{ form_start(formContact) }}
+
+        <div class="col-md-6">
+            {{ form_row(formContact.lastname,{'attr':{'placeholder':"Votre nom"}}) }}
+        </div>
+
+        <div class="col-md-6">
+            {{ form_row(formContact.firstname,{'attr':{'placeholder':"Votre prenom"}}) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(formContact.email,{'attr':{'placeholder':"Renseigner votre mail"}}) }}
+        </div >
+        <div class="col-md-4">
+            {{ form_row(formContact.object,{'attr':{'placeholder':"Objet du message"}}) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(formContact.message,{'attr':{'placeholder':"Contenu du message"}}) }}
+        </div>
+
+            <button type="submit" class="btn btn-success">Envoyer</button>
+
+
+
+
+
+
+    {{ form_end(formContact) }}
 
 {% endblock %}
