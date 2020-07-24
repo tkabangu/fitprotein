@@ -19,14 +19,14 @@ class UserFixtures extends Fixture
     {
 		$user = new User();
 		$user
-			->setEmail('xavier.lefebure.pro@gmail.com')
+			->setEmail('toto@gmail.com')
 			->setPassword($this->passwordEncoder->encodePassword(
 				$user,
 				'password'
 			))
 			->setCivility('Monsieur')
-			->setFirstName('Xavier')
-			->setLastName('Lefébure')
+			->setFirstName('Prenom')
+			->setLastName('Nom')
 			->setAddress('120 rue toto')
 			->setCity('Montpellier')
 			->setZipCode('34000')

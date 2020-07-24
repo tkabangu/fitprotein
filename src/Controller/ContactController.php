@@ -39,7 +39,7 @@ class ContactController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$contact = $form->getData();
 
-			$contactNotification->Notifiy($contact);
+//			$contactNotification->Notifiy($contact);
 			$contact->setSendedAt(new \DateTime());
 
             $this->entityManager->persist($contact);

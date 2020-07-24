@@ -35,9 +35,11 @@ body {
 
 // Modules
 // ==================
+@import "~bootstrap/scss/bootstrap";
 @import "../fontawesome/css/all.min.css";
 @import "modules/header";
 @import "modules/footer";
+
 
 
 // Pages

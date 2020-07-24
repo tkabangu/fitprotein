@@ -3,16 +3,22 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
-    <h1>Formulaire de contact</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h1>Formulaire de contact</h1>
 
-    {% for message in app.flashes('success') %}
-        {{ message }}
-    {% endfor %}
+                {% for message in app.flashes('success') %}
+                    {{ message }}
+                {% endfor %}
 
-    {% for message in app.flashes('error') %}
-        {{ message }}
-    {% endfor %}
+                {% for message in app.flashes('error') %}
+                    {{ message }}
+                {% endfor %}
 
-    {{ form(form) }}
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
