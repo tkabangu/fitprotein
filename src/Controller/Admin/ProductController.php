@@ -8,6 +8,7 @@ use App\Entity\Product;
 use App\Form\Type\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,22 +18,21 @@ class ProductController extends AbstractController
 {
     /**
      * @var ProductRepository
-
      */
     private $repository;
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
     private $em;
 
-    public function __construct(ProductRepository $repository, ObjectManager $em)
+    public function __construct(ProductRepository $repository, EntityManagerInterface $em)
     {
         $this->repository = $repository;
         $this->em = $em;
     }
 
     /**
-     * @Route("/admin", name="admin.product.index")
+     * @Route("/admin/products", name="admin.product.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
@@ -44,26 +44,25 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin/product/create", name="admin.product.new")
      * @param $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      */
-
     public function new(Request $request)
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $this->em->persist($product);
             $this->em->flush();
             $this->addFlash('success', 'Création avec succès');
             return $this->redirectToRoute('admin.product.index');
-            }
+        }
 
         return $this->render('admin/product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView()
-
         ]);
 
     }
@@ -94,7 +93,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product/{id}", name="admin.product.delete" methods="DELETE")
+     * @Route("/admin/product/{id}", name="admin.product.delete", methods="DELETE")
      * @param Product $product
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
