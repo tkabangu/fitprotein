@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\PictureRepository;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass=PictureRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
+ * @Vich\Uploadable()
  */
 class Picture
 {
@@ -17,7 +21,17 @@ class Picture
      */
     private $id;
 
+
     /**
+     * @var File|null
+     * @Assert\Image(
+     *     mimeTypes="image/jpeg")
+     * @Vich\UploadableField(mapping="product_image", fileNameProduct="filename")
+     */
+    private $imageFile;
+
+    /**
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $filename;
@@ -38,7 +52,7 @@ class Picture
         return $this->filename;
     }
 
-    public function setFilename(string $filename): self
+    public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
 
@@ -54,6 +68,25 @@ class Picture
     {
         $this->product = $product;
 
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+
+    }
+
+    /**
+     * @param null|File $imageFile
+     * @return self
+     */
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
         return $this;
     }
 }

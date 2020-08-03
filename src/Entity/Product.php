@@ -22,13 +22,6 @@ class Product
 
 
     /**
-     * @var string|null
-     * @ORM\Column {type="string", length=255}
-     *
-     */
-    private $filename;
-
-    /**
      * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -91,9 +84,16 @@ class Product
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="product", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
      */
     private $pictures;
+
+    /**
+     * @Assert\All({
+     *      @Assert\Image(mimeTypes="image/jpeg")
+     * })
+     */
+    private $pictureFiles;
 
     public function __construct()
     {
@@ -338,6 +338,14 @@ class Product
         return $this->pictures;
     }
 
+    public function getPicture(): ?Picture
+    {
+        if ($this->pictures->isEmpty()) {
+            return null;
+        }
+        return $this->pictures->first();
+    }
+
     public function addPicture(Picture $picture): self
     {
         if (!$this->pictures->contains($picture)) {
@@ -358,6 +366,29 @@ class Product
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictureFiles()
+    {
+        return $this->pictureFiles;
+    }
+
+    /**
+     * @param mixed $pictureFiles
+     * @return Product
+     */
+    public function setPictureFiles($pictureFiles): self
+    {
+        foreach($pictureFiles as $pictureFile){
+            $picture = new Picture();
+            $picture->setImageFile($pictureFile);
+            $this->addPicture($picture);
+        }
+        $this->pictureFiles = $pictureFiles;
         return $this;
     }
 }
