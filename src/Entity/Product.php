@@ -6,22 +6,15 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\File\File;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity(repositoryClass=ProductRepository::class)
- * @vich\Uploadable()
-=======
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository", repositoryClass=ProductRepository::class)
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
+ * @vich\Uploadable()
  */
 class Product
 {
@@ -111,8 +104,7 @@ class Product
      */
     private $updatedAt;
 
-<<<<<<< HEAD
-=======
+
     /**
      * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
      */
@@ -124,7 +116,6 @@ class Product
      * })
      */
     private $pictureFiles;
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
 
     public function __construct()
     {
@@ -362,7 +353,6 @@ class Product
     }
 
     /**
-<<<<<<< HEAD
      * @return string|null
      */
     public function getFilename(): ?string
@@ -377,7 +367,9 @@ class Product
     public function setFilename(?string $filename): Product
     {
         $this->filename = $filename;
-=======
+    }
+
+     /**
      * @return Collection|Picture[]
      */
     public function getPictures(): Collection
@@ -412,13 +404,10 @@ class Product
                 $picture->setProduct(null);
             }
         }
-
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
         return $this;
     }
 
     /**
-<<<<<<< HEAD
      * @return File|null
      */
     public function getImageFile(): ?File
@@ -439,10 +428,7 @@ class Product
         return $this;
     }
 
-
-
-
-=======
+    /**
      * @return mixed
      */
     public function getPictureFiles()
@@ -464,5 +450,4 @@ class Product
         $this->pictureFiles = $pictureFiles;
         return $this;
     }
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
 }

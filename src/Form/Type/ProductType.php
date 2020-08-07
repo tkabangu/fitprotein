@@ -22,27 +22,23 @@ class ProductType extends AbstractType
             ->add('description')
             ->add('createdAt')
             ->add('updatedAt')
-<<<<<<< HEAD
-            ->add('subCategory', EntityType::class,[
-=======
             ->add('subCategory', EntityType::class, [
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
                 'class' => SubCategory::class,
                 'choice_label' => function($subCategory) {
                     return $subCategory->getName();
                 }
             ])
-<<<<<<< HEAD
+
             ->add('imageFile', FileType::class, [
                 'required' => false
             ])
 
-=======
+
             ->add('pictureFiles', FileType::class, [
                 'required' => false,
                 'multiple' => true
             ])
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
+
         ;
     }
 

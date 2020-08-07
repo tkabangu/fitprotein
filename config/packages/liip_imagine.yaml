@@ -1,19 +1,4 @@
 liip_imagine:
-<<<<<<< HEAD
-    filter_sets:
-        thumb:
-            quality: 75
-            filters:
-                thumbnail:
-                    size:          [360, 230]
-                    mode:          outbound
-        medium:
-            quality: 75
-            filters:
-                thumbnail:
-                    size:          [800, 530]
-                    mode:          outbound
-=======
   filter_sets:
     thumb:
       quality: 75
@@ -63,4 +48,3 @@ liip_imagine:
 #                    size:     [256, 256]
 #                    position: center
 #                    color:    '#fff'
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
