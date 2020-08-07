@@ -37,7 +37,11 @@
         "symfony/yaml": "4.4.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
+<<<<<<< HEAD
         "vich/uploader-bundle": "^1.15"
+=======
+      "ext-json": "*"
+>>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
