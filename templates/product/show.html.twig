@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title property.title %}
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% if product.filename %}
+                        <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                    {% else %}
+                        <img src="{{ '/images/products/empty.jpg' | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <h1>{{ product.title }}</h1>
+                    <div class="text-primary" style="font-size: 4rem;font-weight: bold;">{{ property.formattedPrice }} €</div>
+                    <a href="#" class="btn btn-primary">Contacter nous</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <p>
+            {{ product.description | nl2br }}
+        </p>
+
+        <div class="row">
+            <div class="col-md-8">
+
+                <table class="table table-striped">
+                    <tr>
+                        <td>Remise</td>
+                        <td>{{ product.discount }} %</td>
+                    </tr>
+                    <tr>
+                        <td>Prix</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>Quantité</td>
+                        <td>{{ product.quantity }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

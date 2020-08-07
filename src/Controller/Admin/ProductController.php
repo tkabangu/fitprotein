@@ -12,8 +12,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class ProductController extends AbstractController
 {
@@ -72,7 +72,7 @@ class ProductController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function edit(Product $product, Request $request)
+    public function edit(Product $product, Request $request )
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
