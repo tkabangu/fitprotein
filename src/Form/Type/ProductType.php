@@ -3,6 +3,9 @@
 namespace App\Form\Type;
 
 use App\Entity\Product;
+use App\Entity\SubCategory;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +22,12 @@ class ProductType extends AbstractType
             ->add('description')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('subCategory')
+            ->add('subCategory', EntityType::class,[
+                'class' => SubCategory::class,
+                'choice_label' => function($subCategory){
+                    return $subCategory->getName();
+                }
+            ])
         ;
     }
 

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig'%}
+
+{% block title 'Gérer les order' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les order</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in order %}
+                <tr>
+                    <td>{{ order.state }}</td>
+                    <td>
+                        <a href="{{ path('admin.order.edit',{id: order.id}) }}" class="btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.order.delete', {id: order.id}) }}"style="display:
+                inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ order.id) }}">
+                            <button class="btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin.order.new') }}" class="btn btn-primary">Créer un order</a>
+        </div>
+
+    </div>
+{% endblock %}
+

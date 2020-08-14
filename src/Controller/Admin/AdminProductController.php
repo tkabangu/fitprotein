@@ -7,25 +7,33 @@ namespace App\Controller\Admin;
 use App\Entity\Product;
 use App\Form\Type\ProductType;
 use App\Repository\ProductRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProductController extends AbstractController
+class AdminProductController extends AbstractController
 {
     /**
      * @var ProductRepository
-
      */
     private $repository;
+
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
+     * @ORM\Column(type="string")
      */
     private $em;
 
-    public function __construct(ProductRepository $repository, ObjectManager $em)
+    /**
+     * ProductController constructor.
+     * @param ProductRepository $repository
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(ProductRepository $repository, EntityManagerInterface $em)
     {
         $this->repository = $repository;
         $this->em = $em;
@@ -33,7 +41,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/admin", name="admin.product.index")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index()
     {
@@ -44,9 +52,8 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin/product/create", name="admin.product.new")
      * @param $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      */
-
     public function new(Request $request)
     {
         $product = new Product();
@@ -65,16 +72,15 @@ class ProductController extends AbstractController
             'form' => $form->createView()
 
         ]);
-
     }
 
     /**
      * @Route("/admin/product/{id}", name="admin.product.edit", methods="GET|POST")
      * @param Product $product
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function edit(Product $product,Request $request)
+    public function edit(Product $product, Request $request)
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -85,22 +91,21 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('admin.product.index');
 
         }
-
         return $this->render('admin/product/edit.html.twig', [
             'product' => $product,
             'form' => $form->createView()
-
         ]);
     }
 
     /**
      * @Route("/admin/product/{id}", name="admin.product.delete" methods="DELETE")
      * @param Product $product
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function delete(Product $product, Request $request)
     {
-        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->get('_token'))){
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->get('_token'))) {
              $this->em->remove($product);
              $this->em->flush();
             $this->addFlash('success', 'Supprimé avec succès');

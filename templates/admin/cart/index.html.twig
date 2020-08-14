@@ -1,0 +1,45 @@
+{% extends 'base.html.twig'%}
+
+{% block title 'Gérer les paniers' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les paniers</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cart in cart %}
+                <tr>
+                    <td>{{ cart.owner_id }}</td>
+                    <td>
+                        <a href="{{ path('admin.cart.edit',{id: cart.id}) }}" class="btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.cart.delete', {id: cart.id}) }}"style="display:
+                inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cart.id) }}">
+                            <button class="btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin.cart.new') }}" class="btn btn-primary">Créer un nouveau panier</a>
+        </div>
+
+    </div>
+{% endblock %}
+
