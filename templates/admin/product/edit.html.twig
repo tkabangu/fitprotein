@@ -1,11 +1,18 @@
-{% extends 'base.html.twig' %}
+<<<<<<< HEAD
+{% extends 'admin/baseAdmin.html.twig'%}
+=======
+{% extends 'admin/baseAdmin.html.twig' %}
+>>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
 
 {% block body %}
+
     <div class="container mt-4">
         <h1>Editer le produit</h1>
+<<<<<<< HEAD
+        {{ include('admin/product/_form.html.twig', {button: 'Editer'}) }}
+=======
         {{  include ('admin/product/form.html.twig',{button: 'Editer'}) }}
+>>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
     </div>
+
 {% endblock %}
-
-
-

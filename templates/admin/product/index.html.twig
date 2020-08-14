@@ -1,10 +1,20 @@
-{% extends 'base.html.twig'%}
+<<<<<<< HEAD
+{% extends 'admin/baseAdmin.html.twig'%}
+=======
+{% extends 'admin/baseAdmin.html.twig' %}
+>>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
 
 {% block title 'Gérer les produits' %}
 
 {% block body %}
 <div class="container mt-4">
     <h1>Gérer les produits</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
@@ -23,18 +33,29 @@
         <tr>
             <td>{{ product.title }}</td>
             <td>
+<<<<<<< HEAD
+                <a href="{{ path('admin.product.edit',{id: product.id}) }}" class="btn btn-secondary">Editer</a>
+                <form method="post" action="{{ path('admin.product.delete', {id: product.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiment sûr ?')">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                    <button class="btn btn-danger">Supprimer</button>
+=======
                 <a href="{{ path('admin.product.edit',{id: product.id}) }}" class="btn-secondary">Editer</a>
                 <form method="post" action="{{ path('admin.product.delete', {id: product.id}) }}"style="display:
                 inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
                     <button class="btn-danger">Supprimer</button>
+>>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
                 </form>
             </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
+    <div class="text-right">
+        <a href="{{ path('admin.product.new') }}" class="btn btn-primary">Créer un nouveau produit</a>
+    </div>
 
     <div class="text-right">
         <a href="{{ path('admin.product.new') }}" class="btn btn-primary">Créer un nouveau produit</a>
@@ -42,4 +63,7 @@
 
 </div>
 {% endblock %}
+
+
+
 
