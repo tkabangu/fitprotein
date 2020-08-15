@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col md-4">{{ form_row(form.orderNumber) }}</div>
+    <div class="col md-4">{{ form_row(form.state) }}</div>
+    <div class="col md-4">{{ form_row(form.owner) }}</div>
+</div>
+
+{{ form_widget(form)}}
+<button class="btn-primary">{{ button|default ('Enregistrer') }}</button>
+{{ form_end(form) }}

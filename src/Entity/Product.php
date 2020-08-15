@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository", repositoryClass=ProductRepository::class)
  * @vich\Uploadable()
@@ -25,7 +24,6 @@ class Product
      */
     private $id;
 
-
     /**
      * @var string|null
      * @ORM\Column(type="string", length=255)
@@ -37,16 +35,16 @@ class Product
      * @Assert\Image(
      *     mimeTypes="image/jpeg"
      * )
-     * @Vich\UploadableField(mapping="product_image", fileNameProduct="filename")
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="filename")
      * @ORM\Column(type="string")
      */
     private $imageFile;
 
     /**
-     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="products")
+     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $subCategory;
+    private $subcategory;
 
     /**
      * @ORM\Column(type="float")
@@ -65,7 +63,6 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Range(min="1", max="100")
      */
     private $quantity;
 
@@ -77,12 +74,7 @@ class Product
     /**
      * @ORM\OneToMany(targetEntity=ProductImage::class, mappedBy="product", orphanRemoval=true)
      */
-    private $productImages;
-
-    /**
-     * @ORM\OneToMany(targetEntity=OrderProduct::class, mappedBy="product")
-     */
-    private $orderProducts;
+    private $url;
 
     /**
      * @ORM\OneToMany(targetEntity=Opinion::class, mappedBy="product", orphanRemoval=true)
@@ -90,40 +82,21 @@ class Product
     private $opinions;
 
     /**
-     * @ORM\OneToMany(targetEntity=Cart::class, mappedBy="product", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=OrderProduct::class, mappedBy="product")
+     */
+    private $orderProducts;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Cart::class, mappedBy="product")
      */
     private $carts;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
-
-    /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="product", orphanRemoval=true, cascade={"persist"})
-     */
-    private $pictures;
-
-    /**
-     * @Assert\All({
-     *      @Assert\Image(mimeTypes="image/jpeg")
-     * })
-     */
-    private $pictureFiles;
-
     public function __construct()
     {
-        $this->productImages = new ArrayCollection();
-        $this->orderProducts = new ArrayCollection();
+        $this->url = new ArrayCollection();
         $this->opinions = new ArrayCollection();
+        $this->orderProducts = new ArrayCollection();
         $this->carts = new ArrayCollection();
-        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,14 +104,14 @@ class Product
         return $this->id;
     }
 
-    public function getSubCategory(): ?subCategory
+    public function getSubcategory(): ?Subcategory
     {
-        return $this->subCategory;
+        return $this->subcategory;
     }
 
-    public function setSubCategory(?subCategory $subCategory): self
+    public function setSubcategory(?Subcategory $subcategory): self
     {
-        $this->subCategory = $subCategory;
+        $this->subcategory = $subcategory;
 
         return $this;
     }
@@ -206,60 +179,28 @@ class Product
     /**
      * @return Collection|ProductImage[]
      */
-    public function getProductImages(): Collection
+    public function getUrl(): Collection
     {
-        return $this->productImages;
+        return $this->url;
     }
 
-    public function addProductImage(ProductImage $productImage): self
+    public function addUrl(ProductImage $url): self
     {
-        if (!$this->productImages->contains($productImage)) {
-            $this->productImages[] = $productImage;
-            $productImage->setProduct($this);
+        if (!$this->url->contains($url)) {
+            $this->url[] = $url;
+            $url->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeProductImage(ProductImage $productImage): self
+    public function removeUrl(ProductImage $url): self
     {
-        if ($this->productImages->contains($productImage)) {
-            $this->productImages->removeElement($productImage);
+        if ($this->url->contains($url)) {
+            $this->url->removeElement($url);
             // set the owning side to null (unless already changed)
-            if ($productImage->getProduct() === $this) {
-                $productImage->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|OrderProduct[]
-     */
-    public function getOrderProducts(): Collection
-    {
-        return $this->orderProducts;
-    }
-
-    public function addOrderProduct(OrderProduct $orderProduct): self
-    {
-        if (!$this->orderProducts->contains($orderProduct)) {
-            $this->orderProducts[] = $orderProduct;
-            $orderProduct->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrderProduct(OrderProduct $orderProduct): self
-    {
-        /** @var TYPE_NAME $orderProduct */
-        if ($this->orderProducts->contains($orderProduct)) {
-            $this->orderProducts->removeElement($orderProduct);
-            // set the owning side to null (unless already changed)
-            if ($orderProduct->getProduct() === $this) {
-                $orderProduct->setProduct(null);
+            if ($url->getProduct() === $this) {
+                $url->setProduct(null);
             }
         }
 
@@ -298,6 +239,37 @@ class Product
     }
 
     /**
+     * @return Collection|OrderProduct[]
+     */
+    public function getOrderProducts(): Collection
+    {
+        return $this->orderProducts;
+    }
+
+    public function addOrderProduct(OrderProduct $orderProduct): self
+    {
+        if (!$this->orderProducts->contains($orderProduct)) {
+            $this->orderProducts[] = $orderProduct;
+            $orderProduct->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderProduct(OrderProduct $orderProduct): self
+    {
+        if ($this->orderProducts->contains($orderProduct)) {
+            $this->orderProducts->removeElement($orderProduct);
+            // set the owning side to null (unless already changed)
+            if ($orderProduct->getProduct() === $this) {
+                $orderProduct->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Cart[]
      */
     public function getCarts(): Collection
@@ -328,30 +300,6 @@ class Product
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
     /**
      * @return string|null
      */
@@ -367,43 +315,6 @@ class Product
     public function setFilename(?string $filename): Product
     {
         $this->filename = $filename;
-    }
-
-     /**
-     * @return Collection|Picture[]
-     */
-    public function getPictures(): Collection
-    {
-        return $this->pictures;
-    }
-
-    public function getPicture(): ?Picture
-    {
-        if ($this->pictures->isEmpty()) {
-            return null;
-        }
-        return $this->pictures->first();
-    }
-
-    public function addPicture(Picture $picture): self
-    {
-        if (!$this->pictures->contains($picture)) {
-            $this->pictures[] = $picture;
-            $picture->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removePicture(Picture $picture): self
-    {
-        if ($this->pictures->contains($picture)) {
-            $this->pictures->removeElement($picture);
-            // set the owning side to null (unless already changed)
-            if ($picture->getProduct() === $this) {
-                $picture->setProduct(null);
-            }
-        }
         return $this;
     }
 
@@ -423,31 +334,9 @@ class Product
     {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile) {
-            $this->updatedAt = new \DateTime('now');
+            $this->updated_At = new \DateTime('now');
         }
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPictureFiles()
-    {
-        return $this->pictureFiles;
-    }
-
-    /**
-     * @param mixed $pictureFiles
-     * @return Product
-     */
-    public function setPictureFiles($pictureFiles): self
-    {
-        foreach($pictureFiles as $pictureFile){
-            $picture = new Picture();
-            $picture->setImageFile($pictureFile);
-            $this->addPicture($picture);
-        }
-        $this->pictureFiles = $pictureFiles;
         return $this;
     }
 }
+

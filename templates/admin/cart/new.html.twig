@@ -1,10 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/baseAdmin.html.twig' %}
 
 {% block body %}
-
+    <div class="container mt-4">
+        <h1>Créer un nouveau panier</h1>
+        {{  include ('admin/promoCode/_form.html.twig',{button: 'Créer'}) }}
+    </div>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-

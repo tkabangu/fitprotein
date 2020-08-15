@@ -25,6 +25,8 @@ class PromoCodeType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => PromoCode::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }
+

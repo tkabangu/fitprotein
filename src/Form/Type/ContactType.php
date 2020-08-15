@@ -1,6 +1,7 @@
 <?php
 namespace App\Form\Type;
 
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,10 +26,11 @@ class ContactType extends AbstractType
 		;
 	}
 
-	public function configureOptions(OptionsResolver $resolver)
-	{
-		$resolver->setDefaults([
-			'translation_domain' => 'forms'
-		]);
-	}
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Contact::class,
+            'translation_domain' => 'forms'
+        ]);
+    }
 }

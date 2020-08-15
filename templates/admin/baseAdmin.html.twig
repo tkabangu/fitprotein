@@ -11,19 +11,26 @@
 <body>
 <header>
 
-<<<<<<< HEAD
-<header>
-    <nav>
-        <ul>
-            <li><a href="{{ path('admin') }}">Accueil</a></li>
-            <li><a href="{{ path('admin.product.index') }}">Produits</a></li>
-        </ul>
-    </nav>
+<header class="header">
+    <div class="header__nav">
+        <nav class="nav">
+            <ul>
+                <li><a href="{{ path('admin') }}">Accueil</a></li>
+                <li><a href="{{ path('admin.product.index') }}">Produits</a></li>
+                <li><a href="{{ path('admin.cart.index') }}">Paniers</a></li>
+                <li><a href="{{ path('admin.category.index') }}">Categories</a></li>
+                <li><a href="{{ path('admin.Contact.index') }}">Contacts</a></li>
+                <li><a href="{{ path('admin.opinion.index') }}">Avis</a></li>
+                <li><a href="{{ path('admin.order.index') }}">Order</a></li>
+                <li><a href="{{ path('admin.promoCode.index') }}">Remises</a></li>
+                <li><a href="{{ path('admin.user.index') }}">Utilisateurs</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
-=======
-</header>
->>>>>>> 0726e2d4a34febea6d8756ab4f349fb1a61fdb0b
+
+
 {% block body %}{% endblock %}
 
 {% block javascripts %}

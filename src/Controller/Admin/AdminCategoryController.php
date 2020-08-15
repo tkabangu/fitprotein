@@ -4,10 +4,12 @@
 namespace App\Controller\Admin;
 
 
+
 use App\Entity\Category;
+
+use App\Form\Type\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,26 +52,25 @@ class AdminCategoryController extends AbstractController
 
     /**
      * @Route("/admin/category/create", name="admin.category.new")
-     * @param $request
-     * @return Response
+     * @param Request $request
+     * @return RedirectResponse|Response
      */
     public function new(Request $request)
     {
-        $category = new Category();
+        $category= new category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->um->persist($category);
             $this->um->flush();
-            $this->addFlash('success', 'Création avec succès');
+            $this->addFlash('success', 'Bien créé avec succès');
             return $this->redirectToRoute('admin.category.index');
         }
 
         return $this->render('admin/category/new.html.twig', [
             'category' => $category,
             'form' => $form->createView()
-
         ]);
     }
 

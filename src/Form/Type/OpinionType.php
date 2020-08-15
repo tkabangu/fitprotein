@@ -25,6 +25,8 @@ class OpinionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Opinion::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }
+

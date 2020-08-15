@@ -21,6 +21,8 @@ class CartType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Cart::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }
+
