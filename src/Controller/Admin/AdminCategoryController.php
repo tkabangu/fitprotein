@@ -41,13 +41,15 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.category.index")
+     * @Route("/admin/categories", name="admin.category.index")
      * @return Response
      */
     public function index()
     {
         $category = $this->repository->findAll();
-        return $this->render('admin/category/index.html.twig', compact('category'));
+        return $this->render('admin/category/index.html.twig', [
+            'category'=>compact($category)
+            ]);
     }
 
     /**
@@ -98,7 +100,7 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/{id}", name="admin.category.delete" methods="DELETE")
+     * @Route("/admin/category/{id}", name="admin.category.delete", methods="DELETE")
      * @param Category $category
      * @param Request $request
      * @return RedirectResponse

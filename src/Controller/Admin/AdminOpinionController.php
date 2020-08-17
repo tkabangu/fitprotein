@@ -40,7 +40,7 @@ class AdminOpinionController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.opinion.index")
+     * @Route("/admin/opinions", name="admin.opinion.index")
      * @return Response
      */
     public function index()
@@ -98,7 +98,7 @@ class AdminOpinionController extends AbstractController
     }
 
     /**
-     * @Route("/admin/opinion/{id}", name="admin.opinion.delete" methods="DELETE")
+     * @Route("/admin/opinion/{id}", name="admin.opinion.delete", methods="DELETE")
      * @param Opinion $opinion
      * @param Request $request
      * @return RedirectResponse

@@ -40,7 +40,7 @@ class AdminOrderController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.order.index")
+     * @Route("/admin/orders", name="admin.order.index")
      * @return Response
      */
     public function index()
@@ -98,7 +98,7 @@ class AdminOrderController extends AbstractController
     }
 
     /**
-     * @Route("/admin/order/{id}", name="admin.order.delete" methods="DELETE")
+     * @Route("/admin/order/{id}", name="admin.order.delete", methods="DELETE")
      * @param Order $order
      * @param Request $request
      * @return RedirectResponse

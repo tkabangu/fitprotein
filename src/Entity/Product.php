@@ -41,10 +41,10 @@ class Product
     private $imageFile;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="products")
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $subcategory;
+    private $subCategory;
 
     /**
      * @ORM\Column(type="float")
@@ -70,6 +70,16 @@ class Product
      * @ORM\Column(type="text")
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * @ORM\OneToMany(targetEntity=ProductImage::class, mappedBy="product", orphanRemoval=true)
@@ -104,14 +114,14 @@ class Product
         return $this->id;
     }
 
-    public function getSubcategory(): ?Subcategory
+    public function getSubCategory(): ?SubCategory
     {
-        return $this->subcategory;
+        return $this->subCategory;
     }
 
-    public function setSubcategory(?Subcategory $subcategory): self
+    public function setSubCategory(?Subcategory $subCategory): self
     {
-        $this->subcategory = $subcategory;
+        $this->subCategory = $subCategory;
 
         return $this;
     }
@@ -173,6 +183,42 @@ class Product
     {
         $this->description = $description;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     * @return Product
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param mixed $updatedAt
+     * @return Product
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 

@@ -36,7 +36,8 @@
             </div>
             <div class="header__user">
                 <ul class="nav__items">
-                    <li><span class="nav__item">Panier</span></li>
+                    <li><a class="nav__item" href="{{ path('cart_index') }}">Panier</a></li>
+
                     <li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>

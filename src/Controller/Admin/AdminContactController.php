@@ -39,7 +39,7 @@ class AdminContactController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.Contact.index")
+     * @Route("/admin/contacts", name="admin.Contact.index")
      * @return Response
      */
     public function index()
@@ -97,7 +97,7 @@ class AdminContactController extends AbstractController
     }
 
     /**
-     * @Route("/admin/contact/{id}", name="admin.contact.delete" methods="DELETE")
+     * @Route("/admin/contact/{id}", name="admin.contact.delete", methods="DELETE")
      * @param Contact $contact
      * @param Request $request
      * @return RedirectResponse

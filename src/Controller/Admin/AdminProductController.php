@@ -38,7 +38,7 @@ class AdminProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product", name="admin.product.index")
+     * @Route("/admin/products", name="admin.product.index")
      * @return Response
      */
     public function index()

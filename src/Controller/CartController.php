@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     /**
-     * @Route("/panier", name="cart_index")
+     * @Route("/cart", name="cart_index")
      * @param CartService $cartService
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -23,7 +23,7 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/panier/add/{id}", name="cart_add")
+     * @Route("/cart/add/{id}", name="cart_add")
      * @param $id
      * @param CartService $cartService
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -35,7 +35,7 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/panier/remove/{id}", name="cart_remove")
+     * @Route("/cart/remove/{id}", name="cart_remove")
      * @param $id
      * @param CartService $cartService
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

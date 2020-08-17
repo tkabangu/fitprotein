@@ -39,13 +39,13 @@ class AdminPromoCodeController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.promoCode.index")
+     * @Route("/admin/promoCodes", name="admin.promoCode.index")
      * @return Response
      */
     public function index()
     {
-        $product = $this->repository->findAll();
-        return $this->render('admin/promoCode/index.html.twig', compact('promoCode'));
+        $promoCode = $this->repository->findAll();
+        return $this->render('admin/promoCode/index.html.twig', ['promoCodes' => compact($promoCode)]);
     }
 
     /**
@@ -59,7 +59,7 @@ class AdminPromoCodeController extends AbstractController
         $form = $this->createForm(PromoCodeType::class, $promoCode);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->ym->persist($promoCode);
             $this->ym->flush();
             $this->addFlash('success', 'Création avec succès');
@@ -84,7 +84,7 @@ class AdminPromoCodeController extends AbstractController
         $form = $this->createForm(PromoCodeType::class, $promoCode);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->im->flush();
             $this->addFlash('success', 'Modifié avec succès');
             return $this->redirectToRoute('admin.opinion.index');
@@ -97,7 +97,7 @@ class AdminPromoCodeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/promoCode/{id}", name="admin.promoCode.delete" methods="DELETE")
+     * @Route("/admin/promoCode/{id}", name="admin.promoCode.delete", methods="DELETE")
      * @param PromoCode $promoCode
      * @param Request $request
      * @return RedirectResponse
