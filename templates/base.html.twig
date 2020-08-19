@@ -10,12 +10,12 @@
     </head>
     <body>
         <header class="header">
-            <div class="header__brand"><a href="{{ path('home') }}">Fitprotein</a></div>
+            <div class="header__brand"><a class="navbar-brand" href="{{ path('home') }}">Fitprotein</a></div>
             <div class="header__nav">
-                <nav class="nav">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                     <ul class="nav__items">
                         <li class="nav__dropdown">
-                            <span class="nav__item">Nutrition sportive</span>
+                            <span class="nav__item"><a class="navbar-brand"{% if current_menu is defined and current_menu == 'products'%}active{% endif %} href="{{ path('product.index') }}">Nutrition sportive</a></span>
                             <ul class="nav__dropdown-items">
                                 <li><a href="" class="nav__dropdown-item">Proteines</a></li>
                                 <li><a href="" class="nav__dropdown-item">BCAA</a></li>

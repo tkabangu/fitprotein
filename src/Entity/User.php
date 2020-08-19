@@ -93,6 +93,7 @@ class User implements UserInterface
      */
     private $updatedAt;
 
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -366,6 +367,5 @@ class User implements UserInterface
 
         return $this;
     }
-
 
 }
