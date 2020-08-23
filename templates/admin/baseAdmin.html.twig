@@ -3,37 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}ADMIN{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/plugins/DataTables/datatables.min.css')}}"/>
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
-<header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ path('admin.product.index') }}">Fitprotein </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Administration
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ path('admin.product.index') }}">Produits</a>
+                    <a class="dropdown-item" href="{{ path('admin.category.index') }}">Categories</a>
+                    <a class="dropdown-item" href="{{ path('admin.contact.index') }}">Contacts</a>
+                    <a class="dropdown-item" href="{{ path('admin.opinion.index') }}">Avis</a>
+                    <a class="dropdown-item" href="{{ path('admin.order.index') }}">Commandes</a>
+                    <a class="dropdown-item" href="{{ path('admin.promoCode.index') }}">Remises</a>
+                    <a class="dropdown-item" href="{{ path('admin.user.index') }}">Utilisateurs</a>
+                    <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>
+                </div>
+            </li>
 
-<header class="header">
-    <div class="header__nav">
-        <nav class="nav">
-            <ul>
-                <li><a href="{{ path('admin') }}">Accueil</a></li>
-                <li><a href="{{ path('admin.product.index') }}">Produits</a></li>
-                <li><a href="{{ path('admin.category.index') }}">Categories</a></li>
-                <li><a href="{{ path('admin.Contact.index') }}">Contacts</a></li>
-                <li><a href="{{ path('admin.opinion.index') }}">Avis</a></li>
-                <li><a href="{{ path('admin.order.index') }}">Order</a></li>
-                <li><a href="{{ path('admin.promoCode.index') }}">Remises</a></li>
-                <li><a href="{{ path('admin.user.index') }}">Utilisateurs</a></li>
-            </ul>
-        </nav>
+        </ul>
     </div>
-</header>
-
-
+</nav>
 
 {% block body %}{% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/plugins/jquery-3.5.1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/DataTables/datatables.min.js') }}"></script>
+
     {{ encore_entry_script_tags('app') }}
+
+
+{% endblock %}
+{% block javascript_footer %}
+    <script>
+
+        $(document).ready(function() {
+            $('.dataTable').dataTable();
+        } );
+    </script>
 {% endblock %}
 </body>
 </html>

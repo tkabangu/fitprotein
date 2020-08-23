@@ -3,9 +3,11 @@
 namespace App\Form\Type;
 
 use App\Entity\Product;
+use App\Entity\ProductImage;
 use App\Entity\SubCategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,9 +31,10 @@ class ProductType extends AbstractType
                     return $subCategory->getName();
                 }
             ])
-            
-            ->add('imageFile', FileType::class, [
-                'required' => false
+
+            ->add('pictureFiles', FileType::class, [
+                'required' => false,
+                'multiple' => true
             ])
 
         ;

@@ -1,22 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tous nos produits{% endblock %}
+{% block title %}Bienvenue chez Fitprotein{% endblock %}
 
 
 {% block body %}
-    {% for product in products %}
-        {% include 'product/_product.html.twig' %}<style>
-    {% endfor %}
-</style>
+    <div class="jumbotron text-center">
+        <p>La meilleure Whey Protéine du marché (classement INC).
+            Atteignez vos Objectifs ! Le plus large choix de Whey Protéine en Stock + Livraison Possible.
+            Découvrez nos Marques.</p>
+    </div>
 
-<div class="example-wrapper">
-    <a href="" class="btn btn-primary">'tferzf</a>
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'L:/laragon/www/fitprotein/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'L:/laragon/www/fitprotein/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container">
+        <h2>Nos nouveaux produits</h2>
+        <div class="dataTable row flex">
+            {% for product in products %}
+            <div class="col-3">
+                {% include 'product/_product.html.twig' %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductImageRepository;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass=ProductImageRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\ProductImageRepository")
+ * @Vich\Uploadable()
  */
 class ProductImage
 {
@@ -18,25 +22,36 @@ class ProductImage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="productImages")
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="pictures")
      * @ORM\JoinColumn(nullable=false)
      */
     private $product;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var File|null
+     * @Assert\Image(
+     *     mimeTypes="image/jpeg"
+     * )
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="filename")
      */
-    private $url;
+    private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $filename;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
 
     public function getId(): ?int
     {
@@ -55,17 +70,28 @@ class ProductImage
         return $this;
     }
 
-    public function getUrl(): ?string
+
+    /**
+     * @return File
+     */
+    public function getImage()
     {
-        return $this->url;
+        return $this->image;
     }
 
-    public function setUrl(string $url): self
+    /**
+     * @param File $image
+     * @return ProductImage
+     */
+    public function setImage(File $image): ProductImage
     {
-        $this->url = $url;
-
+        $this->image = $image;
         return $this;
     }
+
+
+
+
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -90,4 +116,43 @@ class ProductImage
 
         return $this;
     }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     * @return ProductImage
+     */
+    public function setImageFile(?File $imageFile): ProductImage
+    {
+        $this->imageFile = $imageFile;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param mixed $filename
+     * @return ProductImage
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+
+
 }

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\PromoCode;
+use App\Form\Type\PromoCodeType;
 use App\Repository\PromoCodeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;

@@ -25,7 +25,7 @@ class ContactController extends AbstractController
 	}
 
 	/**
-	 * @Route("/contact", name="contact")
+	 * @Route("/contact", name="contact_index")
 	 * @param Request $request
 	 * @param ContactNotification $contactNotification
 	 * @return Response

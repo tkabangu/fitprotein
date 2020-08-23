@@ -1,17 +1,17 @@
-{% extends 'base.html.twig'%}
+{% extends 'admin/baseAdmin.html.twig'%}
 
 {% block title 'Gérer les contacts' %}
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Gérer les contacts</h1>
+        <h2>Gérer les contacts</h2>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
 
-        <table class="table table-striped">
+        <table class=" dataTable table table-striped">
             <thead>
             <tr>
                 <th>Titre</th>
@@ -19,12 +19,12 @@
             </tr>
             </thead>
             <tbody>
-            {% for contact in contacts %}
+            {% for contact in contact %}
                 <tr>
                     <td>{{ contact.subject }}</td>
                     <td>
                         <a href="{{ path('admin.contact.edit',{id: contact.id}) }}" class="btn-secondary">Editer</a>
-                        <form method="post" action="{{ path('admin.contact.delete', {id: cart.id}) }}"style="display:
+                        <form method="post" action="{{ path('admin.contact.delete', {id: contact.id}) }}"style="display:
                 inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">

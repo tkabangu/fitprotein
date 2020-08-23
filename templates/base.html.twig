@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('/assets/plugins/datatables/datatables.min.css')}}"/>
+
 
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -23,21 +25,20 @@
                             </ul>
                         </li>
                         <li class="nav__dropdown">
-                            <span class="nav__item">Vêtements & Accessoires </span>
+                            <span class="nav__item"><a class="navbar-brand"{% if current_menu is defined and current_menu == 'products'%}{% endif %} href="{{ path('product.index') }}">Vêtements & Accessoires</a></span>
                             <ul class="nav__dropdown-items">
                                 <li><a href="" class="nav__dropdown-item">Vêtements hommes</a></li>
                                 <li><a href="" class="nav__dropdown-item">Vêtements femmes</a></li>
                                 <li><a href="" class="nav__dropdown-item">Accessoires</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ path('contact') }}" title="Contact" class="nav__item">Contact</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="header__user">
                 <ul class="nav__items">
                     <li><a class="nav__item" href="{{ path('cart_index') }}">Panier</a></li>
-
+                    <li><a class="nav__item" href="{{ path('app_user_register') }}">Inscription</a></li>
                     <li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>
@@ -58,7 +59,7 @@
                     <a href="#">Modes de paiement</a>
                     <a href="#">Mentions-legales</a>
                     <a href="#">Qui sommes-nous?</a>
-                    <a href="#">Contact</a>
+                    <a href="{{ path('contact_index') }}">Contact</a>
                 </p>
                 <p class="footer-company-name">Fitprotein©2020</p>
             </div>
@@ -92,7 +93,12 @@
             </div>
         </footer>
         {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('assets/plugins/jquery-3.5.1.js') }}"></script>
+
+            <script type="text/javascript" src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+
             {{ encore_entry_script_tags('app') }}
+
         {% endblock %}
     </body>
 </html>

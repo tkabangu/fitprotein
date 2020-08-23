@@ -3,8 +3,6 @@
 namespace App\DataFixtures;
 
 
-
-
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker\Factory;

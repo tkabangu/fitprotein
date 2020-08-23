@@ -15,15 +15,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-	 * @Route("/login", name="app_login")
-	 * @param AuthenticationUtils $authenticationUtils
-	 * @return Response
-	 */
+     * @Route("/login", name="app_login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
+     */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-         if ($this->getUser()) {
-             return $this->redirectToRoute('admin');
-         }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('admin');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Entity\ProductSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
@@ -12,6 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Product|null findOneBy(array $criteria, array $orderBy = null)
  * @method Product[]    findAll()
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method findVisibleQuery()
  */
 class ProductRepository extends ServiceEntityRepository
 {
@@ -24,7 +26,7 @@ class ProductRepository extends ServiceEntityRepository
      * @param ProductSearch $search
      * @return Query
      */
-    public function findAllVisibleQuery(ProductSearch $search): Query
+    public function findAllVisibleQuery(ProductSearch $search):? Query
     {
         /** @var TYPE_NAME $query */
         $query = $this->findVisibleQuery();
@@ -38,9 +40,8 @@ class ProductRepository extends ServiceEntityRepository
 
     }
 
-    private function findVisibleQuery()
-    {
-    }
+
+
 }
 
     // /**
@@ -66,4 +67,5 @@ class ProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
+    */
  

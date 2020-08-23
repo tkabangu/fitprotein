@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Order;
+use App\Form\Type\OrderType;
 use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;

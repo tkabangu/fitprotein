@@ -4,14 +4,14 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Gérer les paniers</h1>
+        <h2>Gérer les paniers</h2>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
 
-        <table class="table table-striped">
+        <table class=" dataTable table table-striped">
             <thead>
             <tr>
                 <th>Titre</th>

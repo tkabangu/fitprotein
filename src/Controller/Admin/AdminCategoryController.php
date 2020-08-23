@@ -36,7 +36,7 @@ class AdminCategoryController extends AbstractController
      */
     public function __construct(CategoryRepository $repository, EntityManagerInterface $um)
     {
-        $this->category = $repository;
+        $this->repository = $repository;
         $this->um = $um;
     }
 

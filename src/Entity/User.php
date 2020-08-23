@@ -38,7 +38,33 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @var string|null
+     * @Assert\NotBlank(message="Le mot de passe est obligatoire")
+     * @Assert\Regex(pattern="#^[a-zA-Z0-9_-]{6,20}$#",
+     *     message="Mot de passe non conforme")
+     */
+    private $plainPassword;
+
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     * @return User
+     */
+    public function setPlainPassword(?string $plainPassword): User
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $civility;
 
@@ -53,18 +79,18 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $city;
 
     /**
      * @Assert\Regex("/^[0-9]{5}$/")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true)
      */
     private $zipCode;
 
@@ -89,7 +115,7 @@ class User implements UserInterface
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -99,6 +125,7 @@ class User implements UserInterface
         $this->orders = new ArrayCollection();
         $this->opinions = new ArrayCollection();
         $this->carts = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime('now'));
     }
 
     public function getId(): ?int

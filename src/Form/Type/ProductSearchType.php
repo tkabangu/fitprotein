@@ -3,7 +3,7 @@
 
 namespace App\Form\Type;
 
-use App\Entity\PropertySearch;
+use App\Entity\ProductSearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;

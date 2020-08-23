@@ -4,9 +4,10 @@
 namespace App\Controller;
 
 
-use App\Entity\Product;
+use App\Entity\ProductSearch;
 use App\Form\Type\ProductSearchType;
-use App\Repository\ProductRepository;
+use App\Entity\Product;
+use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,7 @@ class ProductController extends AbstractController
      * @Route("products", name="product.index")
      * @param PaginatorInterface $paginator
      * @param Request $request
+     * @param EntityManager $manager
      * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
@@ -29,11 +31,19 @@ class ProductController extends AbstractController
         $form =$this->createForm(ProductSearchType::class, $search);
         $form->handleRequest($request);
 
+
+        $manager = $this->getDoctrine()->getManager();
+        $repoProduct = $manager->getRepository('App:Product');
+        //$products = $repoProduct->findAll();
+
         $products = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
+            $repoProduct->findAll(),
             $request->query->getInt('page', 1),
             12
         );
+
+
+
         return $this->render('product/index.html.twig',[
             'current_menu' => 'products',
             'products'     => $products,
@@ -43,7 +53,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/products/{slug}-{id}", name="product.show", requirements={"slug": "[a-z0-9\-]*"})
      * @param Product $product
      * @param string $slug
      * @return Response
@@ -51,7 +61,8 @@ class ProductController extends AbstractController
     public function show(Product $product, string $slug): Response
     {
         if ($product->getSlug() !== $slug) {
-            return $this->redirectToRoute('property.show', [
+            /** @var TYPE_NAME $product */
+            return $this->redirectToRoute('product.show', [
                 'id' => $product->getId(),
                 'slug' => $product>getSlug()
             ], 301);

@@ -5,10 +5,10 @@
 
 {% block body %}
     <div class="bg-light p-3">
-        <h1>Votre panier</h1>
+        <h2>Votre panier</h2>
     </div>
     {% if items | length > 0 %}
-        <table class="table">
+        <table class=" dataTable table">
             <thead>
                 <tr>
                     <th>Produit</th>
@@ -47,3 +47,4 @@
 
 
 {% endblock %}
+

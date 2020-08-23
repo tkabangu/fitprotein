@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Contact;
+use App\Form\Type\ContactType;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,13 +40,13 @@ class AdminContactController extends AbstractController
     }
 
     /**
-     * @Route("/admin/contacts", name="admin.Contact.index")
+     * @Route("/admin/contacts", name="admin.contact.index")
      * @return Response
      */
     public function index()
     {
-        $product = $this->repository->findAll();
-        return $this->render('admin/contact/index.html.twig', compact('contacts'));
+        $contact = $this->repository->findAll();
+        return $this->render('admin/contact/index.html.twig', compact('contact'));
     }
 
     /**
@@ -85,7 +86,7 @@ class AdminContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $this->em->flush();
+            $this->am->flush();
             $this->addFlash('success', 'Modifié avec succès');
             return $this->redirectToRoute('admin.contact.index');
 
@@ -114,4 +115,3 @@ class AdminContactController extends AbstractController
     }
 
 }
-
