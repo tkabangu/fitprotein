@@ -10,11 +10,13 @@ use Cocur\Slugify\Slugify;
 use http\Url;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository", repositoryClass=ProductRepository::class)
  * @UniqueEntity("title")
+ * @Vich\Uploadable
  */
 class Product
 {

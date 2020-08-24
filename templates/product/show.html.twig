@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title property.title %}
+{% block title product.title %}
 
 {% block body %}
     <div class="jumbotron">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    {% if product.filename %}
-                        <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
+                    {% if product.picture %}
+{#                        <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">#}
+                        <img src="{{ '/images/products/'~ product.picture.filename }}" alt="card-img-top" style="width: 100%; height:auto;">
                     {% else %}
                         <img src="{{ '/images/products/empty.jpg' | imagine_filter('medium') }}" alt="card-img-top" style="width: 100%; height:auto;">
                     {% endif %}
