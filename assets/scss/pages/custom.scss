@@ -6,3 +6,39 @@
 .card-body {
   padding-top: 100px;
 }
+
+.header__brand {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 55px 50px;
+  margin-top: 50px;
+}
+
+.header__brand h3 {
+  color: #ffffff;
+  font: normal 36px 'Open Sans', cursive;
+  margin: 0;
+}
+
+.header__brand h3 span {
+  color: lightseagreen;
+}
+
+.logo {
+  padding: 20px;
+}
+.logo a, .logo a:hover, .logo a:focus{
+  text-decoration: none ;
+}
+
+.logo h3 {
+  color: #ffffff;
+  font: normal 36px 'Open Sans', cursive;
+  margin: 0;
+}
+
+.logo h3 span {
+  color: lightseagreen;
+}
