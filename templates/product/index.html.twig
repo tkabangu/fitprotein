@@ -22,16 +22,66 @@
         <p>La meilleure Whey Protéine du marché (classement INC).
             Atteignez vos Objectifs ! Le plus large choix de Whey Protéine en Stock + Livraison Possible.
             Découvrez nos Marques.</p>
-        <div class="row">
-            {% for product in products %}
-                <div class="col-md-4">
-                {% include 'product/_product.html.twig' %}
+
+
+        <div class="content-side col-lg-12 col-md-12 col-sm-12">
+            <!--Shop Single-->
+            <div class="shop-section">
+
+                <!--Sort By-->
+                <div class="items-sorting">
+                    <div class="row clearfix">
+                        <div class="results-column col-md-6 col-sm-6 col-xs-12">
+                            <h6>Showing Items 1–9 of 36 results</h6>
+                        </div>
+                        <div class="select-column pull-right col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <select name="sort-by">
+                                    <option>Default Sorting</option>
+                                    <option>By Order</option>
+                                    <option>By Price</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
+
+                <div class="our-shops">
+
+                    <div class="row clearfix">
+            {% for product in products %}
+                {% include 'product/_product.html.twig' %}
             {% endfor %}
         </div>
-        <div class="pagination">
-            {{ knp_pagination_render(products) }}
-        </div>
+
+                    <!-- Post Share Options -->
+                    <div class="pagination-outer text-center">
+                        <div class="styled-pagination text-center">
+                            <ul class="clearfix">
+                                <li class="prev"><a href="#"><span class="fa fa-angle-double-left"></span> Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li class="active"><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li class="next"><a href="#">Next <span class="fa fa-angle-double-right"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="pagination-outer text-center">
+                        {{ knp_pagination_render(products) }}
+                    </div>
+
+                </div>
+
+                </div>
+            </div>
+
+
     </div>
 
 {% endblock %}

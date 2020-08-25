@@ -10,22 +10,29 @@
                 <div class="top-left pull-left">
                     <!-- Info List -->
                     <ul class="info-list">
-                        <li><span class="icon fa fa-location-arrow"></span> 27 Division St, New York, USA</li>
-                        <li><span class="icon fa fa-phone"></span> <a href="tel:+1-044-123-456-789"> +1 (044) 123 456 789</a></li>
-                        <li><span class="icon fa fa-envelope-o"></span> <a href="mailto:info@example.com"> info@example.com</a></li>
+                        <li><span class="icon fa fa-location-arrow"></span> 14. rue du chevaleret, 75013 Paris, France</li>
+                        <li><span class="icon fa fa-phone"></span> <a href="tel:+1-044-123-456-789"> +1.555.555.5555</a></li>
+                        <li><span class="icon fa fa-envelope"></span> <a href="mailto:fitprotein@gmail.com"> fitprotein@gmail.com</a></li>
                     </ul>
                 </div>
 
                 <!-- Top Right -->
                 <div class="top-right pull-right">
 
+
                     <!--Language-->
-                    <div class="language dropdown"><a class="btn btn-default dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#"><span class="flag-icon fa fa-globe"></span>EN &nbsp;<span class="icon fa fa-angle-down"></span></a>
+
+
+                    <ul class="info-list">
+                        <li>
+                            <a href="{{ path('app_user_register') }}" title="Inscription">Inscription</a>
+                        </li>
+                    </ul>
+
+                    <div class="language dropdown"><a class="btn btn-default dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#"><span class="flag-icon fa fa-globe"></span>FR &nbsp;<span class="icon fa fa-angle-down"></span></a>
                         <ul class="dropdown-menu style-one" aria-labelledby="dropdownMenu2">
+                            <li><a href="#">Français</a></li>
                             <li><a href="#">English</a></li>
-                            <li><a href="#">German</a></li>
-                            <li><a href="#">Arabic</a></li>
-                            <li><a href="#">Hindi</a></li>
                         </ul>
                     </div>
 
@@ -60,59 +67,35 @@
                         </button>
                     </div>
 
+
                     <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                         <ul class="navigation clearfix">
-                            <li class="current dropdown"><a href="#">Home</a>
+
+
+                            <li class="current dropdown"><a href="#">Home</a></li>
+
+                            <li class="dropdown"><a {% if current_menu is defined and current_menu == 'products'%}active{% endif %} href="{{ path('product.index') }}">Nutrition sportive</a>
                                 <ul>
-                                    <li><a href="index.html">Home Page 01</a></li>
-                                    <li><a href="index-2.html">Home Page 02</a></li>
-                                    <li><a href="index-3.html">Home Page 03</a></li>
-                                    <li class="dropdown"><a href="#">Header Styles</a>
-                                        <ul>
-                                            <li><a href="index.html">Header Style 01</a></li>
-                                            <li><a href="index-2.html">Header Style 02</a></li>
-                                            <li><a href="index-3.html">Header Style 03</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="" class="nav__dropdown-item">Proteines</a></li>
+                                    <li><a href="" class="nav__dropdown-item">BCAA</a></li>
+                                    <li><a href="" class="nav__dropdown-item">Brûleurs de graisse</a></li>
                                 </ul>
                             </li>
+
+                            <li class="dropdown"><a {% if current_menu is defined and current_menu == 'products'%}{% endif %} href="{{ path('product.index') }}">Vêtements & Accessoires</a>
+                                <ul>
+                                    <li><a href="">Vêtements hommes</a></li>
+                                    <li><a href="">Vêtements femmes</a></li>
+                                    <li><a href="" >Accessoires</a></li>
+                                </ul>
+                            </li>
+
                             <li class="dropdown"><a href="#">About</a>
                                 <ul>
                                     <li><a href="about.html">About Us</a></li>
                                     <li><a href="faq.html">Faq</a></li>
-                                    <li><a href="price.html">Price</a></li>
                                     <li><a href="team.html">Team</a></li>
-                                    <li><a href="time-table.html">Time Table</a></li>
-                                    <li><a href="testimonial.html">Testimonial</a></li>
                                     <li><a href="comming-soon.html">Comming Soon</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Classes</a>
-                                <ul>
-                                    <li><a href="classes.html">Classes</a></li>
-                                    <li><a href="classes-detail.html">Classes Detail</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Portfolio</a>
-                                <ul>
-                                    <li><a href="portfolio.html">Portfolio</a></li>
-                                    <li><a href="portfolio-detail.html">Portfolio Detail</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Shop</a>
-                                <ul>
-                                    <li><a href="shop.html">Our Products</a></li>
-                                    <li><a href="shop-single.html">Product Single</a></li>
-                                    <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="account.html">Account</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Blog</a>
-                                <ul>
-                                    <li><a href="blog.html">Our Blog</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                    <li><a href="not-found.html">Not Found</a></li>
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact us</a></li>
@@ -126,7 +109,7 @@
                     <!-- Cart Box -->
                     <div class="cart-box">
                         <div class="dropdown">
-                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-cart-3"></span><span class="total-cart">2</span></button>
+                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon fa fa-shopping-cart"></span><span class="total-cart">2</span></button>
                             <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu3">
 
                                 <div class="cart-product">
@@ -160,10 +143,15 @@
                     <!-- Search Btn -->
                     <div class="search-box-btn search-box-outer"><span class="icon fa fa-search"></span></div>
 
-                    <!-- Quote Btn -->
+
                     <div class="btn-box">
-                        <a href="contact.html" class="pass-btn theme-btn">Get A Free Pass</a>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ path('app_logout') }}" title="Se déconnecter" class="pass-btn theme-btn">Logout</a>
+                        {% else%}
+                            <a href="{{ path('app_login') }}" title="Se connecter" class="pass-btn theme-btn">Sign in</a>
+                        {% endif %}
                     </div>
+
 
                 </div>
 

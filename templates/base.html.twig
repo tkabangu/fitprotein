@@ -13,7 +13,7 @@
         <link href="{{ asset('/assets/css/color-switcher-design.css')}}" rel="stylesheet">
 
         <!-- Color Themes -->
-        <link id="theme-color-file" href="{{ asset('/assets/css/color-themes/default-theme.css')}}" rel="stylesheet">
+        <link id="theme-color-file" href="{{ asset('/assets/css/color-themes/teal-theme.css')}}" rel="stylesheet">
 
 
         {% block stylesheets %}
@@ -25,53 +25,15 @@
 
         {% include 'header.html.twig' %}
 
-        <header class="header">
-            <div class="header__brand"><a class="navbar-brand" href="{{ path('home') }}">
-                <h3>Fit<span>protein</span></h3>
-                </a>
-            </div>
-            <div class="header__nav">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                    <ul class="nav__items">
-                        <li class="nav__dropdown">
-                            <span class="nav__item"><a class="navbar-brand"{% if current_menu is defined and current_menu == 'products'%}active{% endif %} href="{{ path('product.index') }}">Nutrition sportive</a></span>
-                            <ul class="nav__dropdown-items">
-                                <li><a href="" class="nav__dropdown-item">Proteines</a></li>
-                                <li><a href="" class="nav__dropdown-item">BCAA</a></li>
-                                <li><a href="" class="nav__dropdown-item">Brûleurs de graisse</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav__dropdown">
-                            <span class="nav__item"><a class="navbar-brand"{% if current_menu is defined and current_menu == 'products'%}{% endif %} href="{{ path('product.index') }}">Vêtements & Accessoires</a></span>
-                            <ul class="nav__dropdown-items">
-                                <li><a href="" class="nav__dropdown-item">Vêtements hommes</a></li>
-                                <li><a href="" class="nav__dropdown-item">Vêtements femmes</a></li>
-                                <li><a href="" class="nav__dropdown-item">Accessoires</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header__user">
-                <ul class="nav__items">
-                    <li><a class="nav__item" href="{{ path('cart_index') }}">Panier</a></li>
-                    <li><a class="nav__item" href="{{ path('app_user_register') }}">Inscription</a></li>
-                    <li>
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>
-                        {% else%}
-                            <a href="{{ path('app_login') }}" title="Se connecter" class="nav__item">Se connecter</a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
-        </header>
+
         {% block body %}{% endblock %}
 
         {% include 'footer.html.twig' %}
 
+    </div>
+
         {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('assets/plugins/jquery-3.5.1.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}"></script>
 
             <script type="text/javascript" src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
 
@@ -79,8 +41,8 @@
             <!--Scroll to top-->
             <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
 
-
             <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.bootstrap-touchspin.js') }}"></script>
             <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
             <script src="{{ asset('assets/js/jquery.fancybox.js') }}"></script>
             <script src="{{ asset('assets/js/appear.js') }}"></script>
@@ -96,5 +58,8 @@
             {{ encore_entry_script_tags('app') }}
 
         {% endblock %}
+
+    {% block javascript_footer %}{% endblock %}
+
     </body>
 </html>
