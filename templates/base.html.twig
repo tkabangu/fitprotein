@@ -30,8 +30,10 @@
 
         {% include 'footer.html.twig' %}
 
+    </div>
+
         {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('assets/plugins/jquery-3.5.1.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}"></script>
 
             <script type="text/javascript" src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
 
@@ -39,8 +41,8 @@
             <!--Scroll to top-->
             <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
 
-
             <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.bootstrap-touchspin.js') }}"></script>
             <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
             <script src="{{ asset('assets/js/jquery.fancybox.js') }}"></script>
             <script src="{{ asset('assets/js/appear.js') }}"></script>
@@ -56,5 +58,8 @@
             {{ encore_entry_script_tags('app') }}
 
         {% endblock %}
+
+    {% block javascript_footer %}{% endblock %}
+
     </body>
 </html>

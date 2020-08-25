@@ -42,3 +42,11 @@
 .logo h3 span {
   color: lightseagreen;
 }
+
+.main-menu .navigation > li > ul > li > a:before {
+   content: none;
+}
+
+.main-menu .navigation > li > ul > li > a:hover {
+  padding: 6px 12px;
+}
