@@ -2,58 +2,64 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}ADMIN{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/DataTables/datatables.min.css')}}"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/plugins/datatables/datatables.min.css')}}"/>
+
+    <link href="{{ asset('/assets/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('/assets/css/responsive.css')}}" rel="stylesheet">
+
+    <!-- Color Switcher Mockup -->
+    <link href="{{ asset('/assets/css/color-switcher-design.css')}}" rel="stylesheet">
+
+    <!-- Color Themes -->
+    <link id="theme-color-file" href="{{ asset('/assets/css/color-themes/teal-theme.css')}}" rel="stylesheet">
+
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ path('admin.product.index') }}">Fitprotein </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Administration
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ path('admin.product.index') }}">Produits</a>
-                    <a class="dropdown-item" href="{{ path('admin.category.index') }}">Categories</a>
-                    <a class="dropdown-item" href="{{ path('admin.contact.index') }}">Contacts</a>
-                    <a class="dropdown-item" href="{{ path('admin.opinion.index') }}">Avis</a>
-                    <a class="dropdown-item" href="{{ path('admin.order.index') }}">Commandes</a>
-                    <a class="dropdown-item" href="{{ path('admin.promoCode.index') }}">Remises</a>
-                    <a class="dropdown-item" href="{{ path('admin.user.index') }}">Utilisateurs</a>
-                    <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>
-                </div>
-            </li>
+<div class="page-wrapper">
 
-        </ul>
-    </div>
-</nav>
+    {% include 'admin/headerAdmin.html.twig' %}
 
-{% block body %}{% endblock %}
+
+    {% block body %}{% endblock %}
+
+    {% include 'footer.html.twig' %}
+
+</div>
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('assets/plugins/jquery-3.5.1.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/DataTables/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+
+
+    <!--Scroll to top-->
+    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
+
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.bootstrap-touchspin.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('assets/js/appear.js') }}"></script>
+    <script src="{{ asset('assets/js/parallax.min.js') }}"></script>
+    <script src="{{ asset('assets/js/tilt.jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.paroller.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.js') }}"></script>
+    <script src="{{ asset('assets/js/nav-tool.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('assets/js/color-settings.js') }}"></script>
 
     {{ encore_entry_script_tags('app') }}
 
-
 {% endblock %}
-{% block javascript_footer %}
-    <script>
 
-        $(document).ready(function() {
-            $('.dataTable').dataTable();
-        } );
-    </script>
-{% endblock %}
+{% block javascript_footer %}{% endblock %}
+
 </body>
 </html>

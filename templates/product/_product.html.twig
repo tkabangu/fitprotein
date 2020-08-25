@@ -1,9 +1,9 @@
 <div class="single-product-item col-lg-4 col-md-6 col-sm-12 text-center">
     <div class="img-holder">
         {% if product.picture%}
-            <img width="270" height="300" src="{{ '/images/products/'~product.picture.filename }}" class="" alt="">
+            <img style="width:170px" src="{{ '/images/products/'~product.picture.filename }}" class="" alt="">
         {% else %}
-            <img src="{{ '/images/products/empty.jpg' }}" alt="no-image" width="270" height="300">
+            <img src="{{ '/images/products/empty.jpg' }}" alt="no-image" width="170">
 
         {% endif %}
     </div>

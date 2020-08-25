@@ -132,32 +132,22 @@
 
                     <!-- Search Btn -->
                     <div class="search-box-btn search-box-outer"><span class="icon fa fa-search"></span></div>
+                    <div class="dropdown">
 
-
-                    <div class="btn-box">
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <div class="dropdown">
-
-                                    <button class="dropdown-toggle" type="button" id="dropdownMenuAdmin3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span></button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuAdmin3">
-                                        <a class="dropdown-item" href="{{ path('admin.product.index') }}">Produits</a>
-                                        <a class="dropdown-item" href="{{ path('admin.category.index') }}">Categories</a>
-                                        <a class="dropdown-item" href="{{ path('admin.contact.index') }}">Contacts</a>
-                                        <a class="dropdown-item" href="{{ path('admin.opinion.index') }}">Avis</a>
-                                        <a class="dropdown-item" href="{{ path('admin.order.index') }}">Commandes</a>
-                                        <a class="dropdown-item" href="{{ path('admin.promoCode.index') }}">Remises</a>
-                                        <a class="dropdown-item" href="{{ path('admin.user.index') }}">Utilisateurs</a>
-                                        <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>
-                                    </div>
-                                </div>
-                            {% else%}
-                                <a href="{{ path('app_logout') }}" title="Se déconnecter" class="pass-btn theme-btn">Déconnexion</a>
-                            {% endif %}
-                        {% else%}
-                            <a href="{{ path('app_login') }}" title="Se connecter" class="pass-btn theme-btn">Connexion</a>
-                        {% endif %}
+                    <button class="dropdown-toggle" type="button" id="dropdownMenuAdmin3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span></button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuAdmin3">
+                            <a class="dropdown-item" href="{{ path('admin.product.index') }}">Produits</a>
+                            <a class="dropdown-item" href="{{ path('admin.category.index') }}">Categories</a>
+                            <a class="dropdown-item" href="{{ path('admin.contact.index') }}">Contacts</a>
+                            <a class="dropdown-item" href="{{ path('admin.opinion.index') }}">Avis</a>
+                            <a class="dropdown-item" href="{{ path('admin.order.index') }}">Commandes</a>
+                            <a class="dropdown-item" href="{{ path('admin.promoCode.index') }}">Remises</a>
+                            <a class="dropdown-item" href="{{ path('admin.user.index') }}">Utilisateurs</a>
+                            <a href="{{ path('app_logout') }}" title="Se déconnecter" class="nav__item">Se déconnecter</a>
+                        </div>
                     </div>
+
+
 
 
                 </div>
