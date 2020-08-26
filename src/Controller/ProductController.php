@@ -78,7 +78,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/products/{slug}-{id}", name="product.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @Route("/product/{slug}-{id}", name="product.show", requirements={"slug": "[a-z0-9\-]*"})
      * @param Product $product
      * @param string $slug
      * @return Response
