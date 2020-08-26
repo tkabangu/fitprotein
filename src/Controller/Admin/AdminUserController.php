@@ -56,6 +56,9 @@ class AdminUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            // Mettre a jour date (created and upadate)
+            $user->setCreatedAt(new \DateTime());
+            $user->setUpdatedAt(new \DateTime());
             $this->us->persist($user);
             $this->us->flush();
             $this->addFlash('success', 'Création avec succès');
@@ -81,6 +84,9 @@ class AdminUserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Mettre a jour date (upadate)
+            $user->setUpdatedAt(new \DateTime());
             $this->us->flush();
             $this->addFlash('success', 'Modifié avec succès');
             return $this->redirectToRoute('admin.user.index');

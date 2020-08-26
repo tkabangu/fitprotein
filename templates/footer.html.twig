@@ -3,10 +3,10 @@
         <h3>Fit<span>protein</span></h3>
         <p class="footer-links">
             <a href="#" class="link-1">Home</a>
-            <a href="#">Livraison et retours</a>
-            <a href="#">Modes de paiement</a>
-            <a href="#">Mentions-legales</a>
-            <a href="public/qui_sommes_nous.html">Qui sommes-nous?</a>
+            <a href="{{ path('livraison-et-retours') }}">Livraison et retours</a>
+            <a href="/{{ path('modes-de-paiement') }}">Modes de paiement</a>
+            <a href="{{ path('/') }}">Mentions-legales</a>
+            <a href="{{ path('qui-sommes-nous') }}">Qui sommes-nous?</a>
             <a href="{{ path('contact_index') }}">Contact</a>
         </p>
         <p class="footer-company-name">Fitprotein©2020</p>

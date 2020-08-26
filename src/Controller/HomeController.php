@@ -48,6 +48,31 @@ class HomeController extends AbstractController
         return $this->render('home/mentions-legales.html.twig', array());
     }
 
+    /**
+     * @Route("/qui-sommes-nous",name="qui-sommes-nous")
+     * @template
+     * @param $request
+     */
+    public function quiSommesNousAction(Request $request){
+        return $this->render('home/qui-sommes-nous.html.twig', array());
+    }
+
+    /**
+     * @Route("/livraison-et-retours",name="livraison-et-retours")
+     * @template
+     * @param $request
+     */
+    public function livraisonEtRetours(Request $request){
+        return $this->render('home/livraison-et-retours.html.twig', array());
+    }
+    /**
+     * @Route("/modes-de-paiement",name="modes-de-paiement")
+     * @template
+     * @param $request
+     */
+    public function modesDePaiement(Request $request){
+        return $this->render('home/modes-de-paiement.html.twig', array());
+    }
 
 
 }
