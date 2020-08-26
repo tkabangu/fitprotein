@@ -37,4 +37,17 @@ class HomeController extends AbstractController
             'form'         => 'toto'
         ]);
     }
+
+
+    /**
+     * @Route("/mentions-legales",name="mentions-legales")
+     * @template
+     * @param $request
+     */
+    public function mentionsLegalesAction(Request $request){
+        return $this->render('home/mentions-legales.html.twig', array());
+    }
+
+
+
 }
