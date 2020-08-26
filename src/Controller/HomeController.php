@@ -2,19 +2,39 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
     /**
      * @Route("/", name="home")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
      */
-    public function index()
+    public function index(PaginatorInterface $paginator, Request $request)
     {
-        return $this->render('home/index.html.twig', [
+
+        $manager = $this->getDoctrine()->getManager();
+        $repoProduct = $manager->getRepository('App:Product');
+        //$products = $repoProduct->findAll();
+
+        $products = $paginator->paginate(
+            $repoProduct->findAll(),
+            $request->query->getInt('page', 1),
+            12
+        );
+
+        return $this->render('home/index.html.twig',[
             'controller_name' => 'HomeController',
-            'products' => []
+            'products'     => $products,
+            'form'         => 'toto'
         ]);
     }
 }

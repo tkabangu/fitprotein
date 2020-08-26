@@ -99,7 +99,11 @@
                     <!-- Cart Box -->
                     <div class="cart-box">
                         <div class="dropdown">
-                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon fa fa-shopping-cart"></span><span class="total-cart">2</span></button>
+
+                            <button class="cart-box-btn" type="button" id="dropdownMenu" data-toggle="modal" data-target="#cart"><span class="icon fa fa-shopping-cart"></span><span class="total-count  total-cart"></span></button>
+                            {#
+                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon fa fa-shopping-cart"></span><span class="total-cart total-count"></span></button>
+
                             <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu3">
 
                                 <div class="cart-product">
@@ -126,7 +130,8 @@
                                     <li><a href="checkout.html">CheckOut</a></li>
                                 </ul>
 
-                            </div>
+                            </div>#}
+
                         </div>
                     </div>
 
@@ -187,7 +192,12 @@
                     <!-- Cart Box -->
                     <div class="cart-box">
                         <div class="dropdown">
-                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-cart-3"></span><span class="total-cart">2</span></button>
+
+                            <button class="cart-box-btn" type="button" id="dropdownMenu" data-toggle="modal" data-target="#cart"><span class="total-count total-cart"></span></button>
+
+                            {#
+                             <button class="cart-box-btn" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                             <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu3">
 
                                 <div class="cart-product">
@@ -214,7 +224,7 @@
                                     <li><a href="checkout.html">CheckOut</a></li>
                                 </ul>
 
-                            </div>
+                            </div>#}
                         </div>
                     </div>
 
