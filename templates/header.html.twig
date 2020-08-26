@@ -74,19 +74,19 @@
 
                             <li class="current dropdown"><a href="{{ path('home') }}">Home</a></li>
 
-                            <li class="dropdown"><a {% if current_menu is defined and current_menu == 'products'%}active{% endif %} href="{{ path('product.index') }}">Nutrition sportive</a>
+                            <li class="dropdown"><a {% if current_menu is defined and current_menu == 'products'%}active{% endif %} href="{{ path('product.index', {id:1}) }}">Nutrition sportive</a>
                                 <ul>
-                                    <li><a href="" class="nav__dropdown-item">Proteines</a></li>
-                                    <li><a href="" class="nav__dropdown-item">BCAA</a></li>
-                                    <li><a href="" class="nav__dropdown-item">Brûleurs de graisse</a></li>
+                                    <li><a href="{{ path('product.index', {id:1, sid:1}) }}" class="nav__dropdown-item">Proteines</a></li>
+                                    <li><a href="{{ path('product.index', {id:1, sid:2}) }}" class="nav__dropdown-item">BCAA</a></li>
+                                    <li><a href="{{ path('product.index', {id:1, sid:3}) }}"  class="nav__dropdown-item">Brûleurs de graisse</a></li>
                                 </ul>
                             </li>
 
-                            <li class="dropdown"><a {% if current_menu is defined and current_menu == 'products'%}{% endif %} href="{{ path('product.index') }}">Vêtements & Accessoires</a>
+                            <li class="dropdown"><a {% if current_menu is defined and current_menu == 'products'%}{% endif %} href="{{ path('product.index', {id:4}) }}">Vêtements & Accessoires</a>
                                 <ul>
-                                    <li><a href="">Vêtements hommes</a></li>
-                                    <li><a href="">Vêtements femmes</a></li>
-                                    <li><a href="" >Accessoires</a></li>
+                                    <li><a href="{{ path('product.index', {id:4, sid:4}) }}">Vêtements hommes</a></li>
+                                    <li><a href="{{ path('product.index', {id:4, sid:5}) }}">Vêtements femmes</a></li>
+                                    <li><a href="{{ path('product.index', {id:4, sid:6}) }}" >Accessoires</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -99,7 +99,11 @@
                     <!-- Cart Box -->
                     <div class="cart-box">
                         <div class="dropdown">
-                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon fa fa-shopping-cart"></span><span class="total-cart">2</span></button>
+
+                            <button class="cart-box-btn" type="button" id="dropdownMenu" data-toggle="modal" data-target="#cart"><span class="icon fa fa-shopping-cart"></span><span class="total-count  total-cart"></span></button>
+                            {#
+                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon fa fa-shopping-cart"></span><span class="total-cart total-count"></span></button>
+
                             <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu3">
 
                                 <div class="cart-product">
@@ -126,7 +130,8 @@
                                     <li><a href="checkout.html">CheckOut</a></li>
                                 </ul>
 
-                            </div>
+                            </div>#}
+
                         </div>
                     </div>
 
@@ -187,7 +192,12 @@
                     <!-- Cart Box -->
                     <div class="cart-box">
                         <div class="dropdown">
-                            <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-cart-3"></span><span class="total-cart">2</span></button>
+
+                            <button class="cart-box-btn" type="button" id="dropdownMenu" data-toggle="modal" data-target="#cart"><span class="total-count total-cart"></span></button>
+
+                            {#
+                             <button class="cart-box-btn" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                             <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu3">
 
                                 <div class="cart-product">
@@ -214,7 +224,7 @@
                                     <li><a href="checkout.html">CheckOut</a></li>
                                 </ul>
 
-                            </div>
+                            </div>#}
                         </div>
                     </div>
 

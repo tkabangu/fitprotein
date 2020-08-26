@@ -2,6 +2,7 @@
 
 {% block title product.title %}
 
+
 {% block body %}
 
     <!--Shop Single Section-->
@@ -52,12 +53,12 @@
                             <div class="other-options">
                                 <div class="clearfix">
                                     <div class="pull-left">
-                                        <div class="item-quantity"><input class="quantity-spinner" type="text" value="2" name="quantity"></div>
+                                        <div class="item-quantity"><input class="item-quantity quantity-spinner" type="text" value="1" name="quantity" data-max="{{ product.quantity }}"></div>
                                     </div>
                                     <div class="pull-left">
                                         <!--Btns Box-->
                                         <div class="btns-box">
-                                            <button type="button" class="theme-btn btn-style-three"><span class="txt">Add To Cart</span></button>
+                                            <button type="button" class="add-to-cart btn btn-primary" data-id="{{ product.id }}" data-filename="{{ product.picture.filename }}" data-name="{{ product.title }}" data-price="{{ product.price }}" ><span class="txt">Add To Cart</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -170,9 +171,12 @@
         </div>
     </section>
     <!--End Shop Single Section-->
+
+
 {% endblock %}
 
  {% block javascript_footer %}
-     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-     <script src="{{ asset('assets/js/script.js') }}"></script>
+
+
+
 {% endblock %}

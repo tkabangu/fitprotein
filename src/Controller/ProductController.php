@@ -19,13 +19,14 @@ class ProductController extends AbstractController
     private $repository;
 
     /**
-     * @Route("products", name="product.index")
+     * @Route("products/{id}/{sid}", name="product.index")
      * @param PaginatorInterface $paginator
      * @param Request $request
-     * @param EntityManager $manager
+     * @param integer $id
+     * @param integer $sid
      * @return Response
      */
-    public function index(PaginatorInterface $paginator, Request $request): Response
+    public function index($id = null, $sid = null, PaginatorInterface $paginator, Request $request): Response
     {
         $search = new ProductSearch();
         $form =$this->createForm(ProductSearchType::class, $search);
@@ -34,14 +35,38 @@ class ProductController extends AbstractController
 
         $manager = $this->getDoctrine()->getManager();
         $repoProduct = $manager->getRepository('App:Product');
+
+        $repoSubCat = $manager->getRepository('App:SubCategory');
         //$products = $repoProduct->findAll();
 
-        $products = $paginator->paginate(
-            $repoProduct->findAll(),
-            $request->query->getInt('page', 1),
-            12
-        );
 
+        if($id){
+            $subCats = $repoSubCat->find($id);
+
+            $subCats = $repoSubCat->findBy( ['category' => $id]);
+
+            $products = $paginator->paginate(
+                $repoProduct->findBy( ['subCategory' => $subCats]),
+                $request->query->getInt('page', 1),
+                12
+            );
+
+            if($sid){
+
+                $products = $paginator->paginate(
+                    $repoProduct->findBy( ['subCategory' => $sid]),
+                    $request->query->getInt('page', 1),
+                    12
+                );
+            }
+        }
+        else{
+            $products = $paginator->paginate(
+                $repoProduct->findAll(),
+                $request->query->getInt('page', 1),
+                12
+            );
+        }
 
 
         return $this->render('product/index.html.twig',[
@@ -64,7 +89,7 @@ class ProductController extends AbstractController
             /** @var TYPE_NAME $product */
             return $this->redirectToRoute('product.show', [
                 'id' => $product->getId(),
-                'slug' => $product>getSlug()
+                'slug' => $product->getSlug()
             ], 301);
         }
         return $this->render('product/show.html.twig', [
@@ -72,6 +97,5 @@ class ProductController extends AbstractController
 
         ]);
     }
-
 }
 

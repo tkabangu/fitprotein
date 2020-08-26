@@ -59,3 +59,20 @@
 .single-product-item .img-holder {
   border-width: 1px;
 }
+
+.bootstrap-touchspin-up{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.bootstrap-touchspin-down{
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+.product-details .basic-details .item-quantity {
+  margin-bottom: 0;
+  margin-right: 30px;
+}
