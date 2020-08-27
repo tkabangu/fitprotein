@@ -1,8 +1,8 @@
 {
-  "build/app.css": "/build/app.css",
-  "build/app.js": "/build/app.js",
-  "build/runtime.js": "/build/runtime.js",
-  "build/vendors~app.js": "/build/vendors~app.js",
+  "build/0.ebc9a3a1.js": "/build/0.ebc9a3a1.js",
+  "build/app.css": "/build/app.e0fb7fb3.css",
+  "build/app.js": "/build/app.2f73eb09.js",
+  "build/runtime.js": "/build/runtime.d94b3b43.js",
   "build/fonts/fa-brands-400.woff2": "/build/fonts/fa-brands-400.31015e86.woff2",
   "build/fonts/fa-brands-400.ttf": "/build/fonts/fa-brands-400.5818bbd0.ttf",
   "build/fonts/fa-brands-400.eot": "/build/fonts/fa-brands-400.607a7785.eot",
